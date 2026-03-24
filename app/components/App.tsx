@@ -109,6 +109,7 @@ function buildFallbackBrief(data: FormData): ClientBrief {
 export default function App() {
   const [authed, setAuthed] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const [restoring, setRestoring] = useState(false);
   const [screen, setScreen] = useState(0);
   const [view, setView] = useState<View>('quiz');
   const [formData, setFormData] = useState<FormData>({});
@@ -125,7 +126,9 @@ export default function App() {
       const wasAuthed = sessionStorage.getItem('mm-auth') === 'true';
       if (wasAuthed) {
         setAuthed(true);
+        setRestoring(true);
         await restoreFromServer();
+        setRestoring(false);
       }
       setHydrated(true);
     };
@@ -148,7 +151,7 @@ export default function App() {
   // Debounced save to server whenever state changes
   const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
-    if (!hydrated || !authed) return;
+    if (!hydrated || !authed || restoring) return;
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     saveTimerRef.current = setTimeout(() => {
       saveStateToServer({ view, screen, formData, clientBrief, designerBrief, reactions, notes });
@@ -285,12 +288,14 @@ export default function App() {
   };
 
   // Don't render until hydration is done to avoid flash
-  if (!hydrated) return null;
+  if (!hydrated || restoring) return null;
 
   if (!authed) {
-    return <PasswordGate onUnlock={() => {
+    return <PasswordGate onUnlock={async () => {
+      setRestoring(true);
       setAuthed(true);
-      restoreFromServer();
+      await restoreFromServer();
+      setRestoring(false);
     }} />;
   }
 
