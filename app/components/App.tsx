@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import PasswordGate from './PasswordGate';
 import Screen0 from './Screen0';
 import Screen1 from './Screen1';
 import Screen2 from './Screen2';
@@ -25,6 +26,18 @@ interface ClientBrief {
   openItems: string[];
 }
 
+interface SavedState {
+  view: View;
+  screen: number;
+  formData: FormData;
+  clientBrief: ClientBrief | null;
+  designerBrief: string;
+  reactions: Record<string, string[]>;
+  notes: Record<string, string>;
+}
+
+const STORAGE_KEY = 'mm-discovery-state';
+
 const STEP_LABELS = [
   '',
   'Deadlines & Scope',
@@ -34,6 +47,24 @@ const STEP_LABELS = [
   'Brand Personality',
   'Optional Details',
 ];
+
+function saveState(state: SavedState) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // localStorage full or unavailable
+  }
+}
+
+function loadState(): SavedState | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
 
 function buildFallbackBrief(data: FormData): ClientBrief {
   const deadline = data.deadline || 'Not specified';
@@ -55,14 +86,14 @@ function buildFallbackBrief(data: FormData): ClientBrief {
   const threeWords = (data.threeWords as string) || 'Not provided';
 
   return {
-    scopeAndTimeline: `Deadline status: ${deadline}. Phase 1 deliverables needed by submission: ${phase1}. Phase 2 scope: ${phase2}. This is a raw summary of your answers — the AI analysis failed, so Talia will review and write the strategic brief manually.`,
+    scopeAndTimeline: `Deadline status: ${deadline}. Phase 1 deliverables needed by submission: ${phase1}. Phase 2 scope: ${phase2}.`,
     budgetAndTerms: `Budget: ${budget}. Brand system users: ${brandUsers}. Sign-off: ${signoff}. Working preferences: ${(data.workingPrefs as string) || 'Not specified'}.`,
     technicalConstraints: `Sub-brand situation: ${subBrands}. ${data.subBrandsNote ? 'Notes: ' + data.subBrandsNote + '. ' : ''}MM meaning: ${mmMeaning}. Platforms: ${platforms}. Language support: ${languages}. Existing build: ${(data.existingBuild as string) || 'Not specified'}.`,
     positioning: `Brand perception goal: ${(data.brandPerception as string) || 'Not specified'}. The founding story — Sam and Alvin building AI for people like their own parents — is the brand's strongest differentiator. Three-word feeling: ${threeWords}. Full positioning recommendation will come from Talia directly.`,
     personality: `Lawyer experience: ${pair1}. Client experience: ${pair2}. Brand energy: ${pair3}. Visual density: ${pair4}. These pair choices define the design system's register — Talia will analyze the tensions and implications in the finalized brief.`,
     visualDirection: `Critter/character commitment: ${critterCommitment}. Character role if included: ${characterRole}. Visual avoidance: Notion, pencil-line hand-drawn${data.visualAvoid ? ', ' + data.visualAvoid : ''}. Color preferences: ${(data.colorPrefs as string) || 'Not specified'}. Type preferences: ${(data.fontPrefs as string) || 'Not specified'}.`,
     openItems: [
-      'AI brief generation failed — Talia will write the strategic analysis manually after reviewing your raw answers',
+      'Strategic analysis is in progress and will be included in the finalized brief',
       budget === 'Not provided' ? 'Budget has not been provided — this blocks scope confirmation' : 'Budget alignment with scope needs confirmation',
       mmMeaning === 'Still open' ? 'MM meaning is undefined — this is a strategic naming decision that affects the entire identity system' : 'MM naming direction needs finalization',
     ],
@@ -70,6 +101,8 @@ function buildFallbackBrief(data: FormData): ClientBrief {
 }
 
 export default function App() {
+  const [authed, setAuthed] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const [screen, setScreen] = useState(0);
   const [view, setView] = useState<View>('quiz');
   const [formData, setFormData] = useState<FormData>({});
@@ -79,6 +112,31 @@ export default function App() {
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loadingDone, setLoadingDone] = useState(false);
   const [error, setError] = useState('');
+
+  // Check auth + restore state on mount
+  useEffect(() => {
+    const wasAuthed = sessionStorage.getItem('mm-auth') === 'true';
+    if (wasAuthed) {
+      setAuthed(true);
+      const saved = loadState();
+      if (saved) {
+        setView(saved.view);
+        setScreen(saved.screen);
+        setFormData(saved.formData);
+        setClientBrief(saved.clientBrief);
+        setDesignerBrief(saved.designerBrief);
+        setReactions(saved.reactions);
+        setNotes(saved.notes);
+      }
+    }
+    setHydrated(true);
+  }, []);
+
+  // Persist state whenever it changes (after hydration)
+  useEffect(() => {
+    if (!hydrated || !authed) return;
+    saveState({ view, screen, formData, clientBrief, designerBrief, reactions, notes });
+  }, [hydrated, authed, view, screen, formData, clientBrief, designerBrief, reactions, notes]);
 
   const totalScreens = 7;
   const progress = view === 'quiz'
@@ -139,7 +197,6 @@ export default function App() {
       console.error('Brief generation failed:', message);
       setError(message);
 
-      // Build fallback brief from raw answers
       setClientBrief(buildFallbackBrief(formData));
       setDesignerBrief('[Brief generation failed: ' + message + ']. Raw form data has been preserved and will be submitted to Talia with your reactions.');
       setLoadingDone(true);
@@ -206,6 +263,25 @@ export default function App() {
     window.scrollTo(0, 0);
     setView('confirmation');
   };
+
+  // Don't render until hydration is done to avoid flash
+  if (!hydrated) return null;
+
+  if (!authed) {
+    return <PasswordGate onUnlock={() => {
+      setAuthed(true);
+      const saved = loadState();
+      if (saved) {
+        setView(saved.view);
+        setScreen(saved.screen);
+        setFormData(saved.formData);
+        setClientBrief(saved.clientBrief);
+        setDesignerBrief(saved.designerBrief);
+        setReactions(saved.reactions);
+        setNotes(saved.notes);
+      }
+    }} />;
+  }
 
   const stepLabel = view === 'quiz' && screen > 0 ? STEP_LABELS[screen] : '';
 

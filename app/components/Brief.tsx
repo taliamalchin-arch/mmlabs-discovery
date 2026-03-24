@@ -111,11 +111,11 @@ export default function Brief({
 
       <div className="draft-banner">
         <div className="draft-banner-label">
-          {isFallback ? 'Fallback draft — AI analysis unavailable' : 'Working draft — not final'}
+          Working draft — not final
         </div>
         <div className="draft-banner-text">
           {isFallback
-            ? 'The AI brief generation encountered an issue, so this draft was built directly from your answers. The sections below contain your raw responses organized into the brief structure. Talia will write the full strategic analysis manually. You can still react and leave notes — everything will be sent through.'
+            ? 'This draft was built from your answers. Read each section, react with an emoji, and leave notes where something needs correcting or more specificity. A finalized brief will follow before any design work begins.'
             : 'This is an analysis of your answers and our discovery conversation — not a recap of what you said, but where it all points. Read each section, react with an emoji, and leave notes where something needs correcting or more specificity. Talia will review your markup and return a finalized brief before any design work begins.'}
         </div>
       </div>

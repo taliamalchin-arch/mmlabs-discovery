@@ -35,7 +35,7 @@ export default function Loading({ done, error }: LoadingProps) {
         </h2>
         <p className="loading-sub">
           {error
-            ? 'AI analysis unavailable — generating a working draft from your raw answers'
+            ? 'Putting together a working draft from your answers'
             : 'Analyzing answers and generating recommendations'}
         </p>
         {!error && (
