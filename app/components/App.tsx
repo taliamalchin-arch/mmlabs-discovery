@@ -274,17 +274,26 @@ export default function App() {
     };
 
     try {
-      await fetch(process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || '', {
+      const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+      if (!endpoint) throw new Error('Formspree endpoint not configured');
+
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
+
+      if (!res.ok) {
+        const body = await res.text().catch(() => '');
+        throw new Error(`Formspree returned ${res.status}: ${body}`);
+      }
+
+      window.scrollTo(0, 0);
+      setView('confirmation');
     } catch (submitErr) {
       console.error('Formspree submission failed:', submitErr);
+      alert('Submission failed — your brief was NOT sent. Please try again or contact Talia directly.');
     }
-
-    window.scrollTo(0, 0);
-    setView('confirmation');
   };
 
   // Don't render until hydration is done to avoid flash
