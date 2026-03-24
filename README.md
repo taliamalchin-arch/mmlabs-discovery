@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MMLABS Brand Discovery
 
-## Getting Started
+Brand identity discovery intake app. Guides clients through a quiz, generates an AI-powered brand brief, and collects reactions before finalizing.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone and install:
+   ```bash
+   git clone <repo-url>
+   cd mmlabs
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create `.env.local` with:
+   ```
+   ANTHROPIC_API_KEY=sk-ant-your-key-here
+   NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/xnjgezjr
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Formspree setup:**
+   - Go to [formspree.io](https://formspree.io), create a free account
+   - Click "New Form", name it (e.g. "MMLABS Discovery")
+   - Copy the endpoint URL (e.g. `https://formspree.io/f/xxxxxxxx`)
+   - Add it as `NEXT_PUBLIC_FORMSPREE_ENDPOINT` in `.env.local`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run locally:
+   ```bash
+   npm run dev
+   ```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+1. Push to GitHub
+2. Connect the repo in [Vercel](https://vercel.com)
+3. Add both environment variables in Vercel project settings:
+   - `ANTHROPIC_API_KEY`
+   - `NEXT_PUBLIC_FORMSPREE_ENDPOINT`
+4. Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customizing for a future client
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To reuse this app for a different client:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Update the client context block in `app/api/generate-brief/route.ts`
+2. Update the pre-confirmed answers in the quiz hints (screen components)
+3. Update the nav brand name and intro copy in `App.tsx` and `Screen0.tsx`
