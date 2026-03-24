@@ -21,6 +21,7 @@ interface BriefProps {
   onReaction: (section: string, emoji: string) => void;
   onNote: (section: string, text: string) => void;
   onSubmit: () => void;
+  onViewAnswers: () => void;
   isFallback?: boolean;
 }
 
@@ -96,6 +97,7 @@ export default function Brief({
   onReaction,
   onNote,
   onSubmit,
+  onViewAnswers,
   isFallback = false,
 }: BriefProps) {
   const today = new Date().toLocaleDateString('en-US', {
@@ -119,6 +121,10 @@ export default function Brief({
             : 'This is an analysis of your answers and our discovery conversation — not a recap of what you said, but where it all points. Read each section, react with an emoji, and leave notes where something needs correcting or more specificity. Talia will review your markup and return a finalized brief before any design work begins.'}
         </div>
       </div>
+
+      <button className="back-link" onClick={onViewAnswers} style={{ marginBottom: '2rem' }}>
+        ← View original answers
+      </button>
 
       {SECTIONS.map(section => (
         <div key={section.key} className="brief-section">

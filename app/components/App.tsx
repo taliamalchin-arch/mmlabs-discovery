@@ -119,6 +119,7 @@ export default function App() {
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [loadingDone, setLoadingDone] = useState(false);
   const [error, setError] = useState('');
+  const [viewingAnswers, setViewingAnswers] = useState(false);
 
   // Check auth + restore state from server on mount
   useEffect(() => {
@@ -245,6 +246,19 @@ export default function App() {
     setNotes(prev => ({ ...prev, [section]: text }));
   };
 
+  const handleViewAnswers = () => {
+    window.scrollTo(0, 0);
+    setViewingAnswers(true);
+    setView('quiz');
+    setScreen(1);
+  };
+
+  const handleBackToBrief = () => {
+    window.scrollTo(0, 0);
+    setViewingAnswers(false);
+    setView('brief');
+  };
+
   const handleBriefSubmit = async () => {
     const sectionNames: Record<string, string> = {
       scopeAndTimeline: 'Scope & Timeline',
@@ -322,6 +336,11 @@ export default function App() {
       </nav>
 
       <div className="wrap">
+        {view === 'quiz' && viewingAnswers && (
+          <button className="back-link" onClick={handleBackToBrief} style={{ marginBottom: '1.5rem' }}>
+            ← Back to brief
+          </button>
+        )}
         {view === 'quiz' && screen === 0 && <Screen0 onNext={goNext} />}
         {view === 'quiz' && screen === 1 && (
           <Screen1 data={formData} onChange={onChange} onNext={goNext} onBack={goBack} />
@@ -355,6 +374,7 @@ export default function App() {
             onReaction={handleReaction}
             onNote={handleNote}
             onSubmit={handleBriefSubmit}
+            onViewAnswers={handleViewAnswers}
             isFallback={!!error}
           />
         )}
