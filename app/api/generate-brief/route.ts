@@ -49,7 +49,7 @@ export async function POST(request: Request) {
   let clientBrief;
   try {
     const clientResponse = await anthropic.messages.create({
-      model: 'claude-3-haiku-20240307',
+      model: 'claude-4-sonnet-20250514',
       max_tokens: 1400,
       system: `You are a senior brand strategist writing a working brand brief for MMLABS. You are writing FOR the designer Talia, to share with the clients Sam and Alvin.
 
@@ -129,7 +129,7 @@ Return ONLY valid JSON with no markdown, no code fences, no preamble. Exact stru
   let designerBrief = '';
   try {
     const designerResponse = await anthropic.messages.create({
-      model: 'claude-3-haiku-20240307',
+      model: 'claude-4-sonnet-20250514',
       max_tokens: 2000,
       system: `You are a senior creative director writing a private internal brief for Talia, a senior brand designer taking on MMLABS as a freelance client. This document is NOT for the client. It is Talia's execution guide.
 

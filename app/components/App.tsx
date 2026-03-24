@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import PasswordGate from './PasswordGate';
 import Screen0 from './Screen0';
 import Screen1 from './Screen1';
@@ -36,8 +36,6 @@ interface SavedState {
   notes: Record<string, string>;
 }
 
-const STORAGE_KEY = 'mm-discovery-state';
-
 const STEP_LABELS = [
   '',
   'Deadlines & Scope',
@@ -48,20 +46,28 @@ const STEP_LABELS = [
   'Optional Details',
 ];
 
-function saveState(state: SavedState) {
+async function saveStateToServer(state: SavedState) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch {
-    // localStorage full or unavailable
+    await fetch('/api/state', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(state),
+    });
+  } catch (err) {
+    console.error('Failed to save state to server:', err);
   }
 }
 
-function loadState(): SavedState | null {
+async function loadStateFromServer(): Promise<SavedState | null> {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch {
+    const res = await fetch('/api/state');
+    const data = await res.json();
+    if (data.state) {
+      return typeof data.state === 'string' ? JSON.parse(data.state) : data.state;
+    }
+    return null;
+  } catch (err) {
+    console.error('Failed to load state from server:', err);
     return null;
   }
 }
@@ -113,29 +119,43 @@ export default function App() {
   const [loadingDone, setLoadingDone] = useState(false);
   const [error, setError] = useState('');
 
-  // Check auth + restore state on mount
+  // Check auth + restore state from server on mount
   useEffect(() => {
-    const wasAuthed = sessionStorage.getItem('mm-auth') === 'true';
-    if (wasAuthed) {
-      setAuthed(true);
-      const saved = loadState();
-      if (saved) {
-        setView(saved.view);
-        setScreen(saved.screen);
-        setFormData(saved.formData);
-        setClientBrief(saved.clientBrief);
-        setDesignerBrief(saved.designerBrief);
-        setReactions(saved.reactions);
-        setNotes(saved.notes);
+    const init = async () => {
+      const wasAuthed = sessionStorage.getItem('mm-auth') === 'true';
+      if (wasAuthed) {
+        setAuthed(true);
+        await restoreFromServer();
       }
-    }
-    setHydrated(true);
-  }, []);
+      setHydrated(true);
+    };
+    init();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Persist state whenever it changes (after hydration)
+  const restoreFromServer = async () => {
+    const saved = await loadStateFromServer();
+    if (saved) {
+      setView(saved.view);
+      setScreen(saved.screen);
+      setFormData(saved.formData);
+      setClientBrief(saved.clientBrief);
+      setDesignerBrief(saved.designerBrief);
+      setReactions(saved.reactions);
+      setNotes(saved.notes);
+    }
+  };
+
+  // Debounced save to server whenever state changes
+  const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
     if (!hydrated || !authed) return;
-    saveState({ view, screen, formData, clientBrief, designerBrief, reactions, notes });
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => {
+      saveStateToServer({ view, screen, formData, clientBrief, designerBrief, reactions, notes });
+    }, 500);
+    return () => {
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    };
   }, [hydrated, authed, view, screen, formData, clientBrief, designerBrief, reactions, notes]);
 
   const totalScreens = 7;
@@ -270,16 +290,7 @@ export default function App() {
   if (!authed) {
     return <PasswordGate onUnlock={() => {
       setAuthed(true);
-      const saved = loadState();
-      if (saved) {
-        setView(saved.view);
-        setScreen(saved.screen);
-        setFormData(saved.formData);
-        setClientBrief(saved.clientBrief);
-        setDesignerBrief(saved.designerBrief);
-        setReactions(saved.reactions);
-        setNotes(saved.notes);
-      }
+      restoreFromServer();
     }} />;
   }
 
