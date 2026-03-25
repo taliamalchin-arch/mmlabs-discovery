@@ -186,12 +186,11 @@ export default function ProposalPage() {
             <div className="proposal-calendar">
               <div className="cal-grid">
                 {/* Day headers */}
-                {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => (
+                {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => (
                   <div key={d} className="cal-day-header">{d}</div>
                 ))}
 
-                {/* Row 1: Sun Mar 22 – Sat Mar 28 */}
-                <div className="cal-cell cal-empty" />
+                {/* Row 1: Mon Mar 23 – Sun Mar 29 */}
                 <div className="cal-cell cal-empty" />
                 <div className="cal-cell cal-empty" />
                 <div className="cal-cell cal-week1">
@@ -209,11 +208,11 @@ export default function ProposalPage() {
                   <span className="cal-day-num cal-week1-text">28</span>
                   <span className="cal-pill cal-pill-locked">Directional confirmation</span>
                 </div>
-
-                {/* Row 2: Sun Mar 29 – Sat Apr 4 */}
                 <div className="cal-cell cal-week1 cal-weekend">
                   <span className="cal-day-num cal-week1-text">29</span>
                 </div>
+
+                {/* Row 2: Mon Mar 30 – Sun Apr 5 */}
                 <div className="cal-cell cal-week1">
                   <span className="cal-day-num cal-week1-text">30</span>
                 </div>
@@ -236,11 +235,11 @@ export default function ProposalPage() {
                   <div className="cal-week-label cal-week2-text">Week 2</div>
                   <span className="cal-day-num cal-week2-text">4</span>
                 </div>
-
-                {/* Row 3: Sun Apr 5 – Sat Apr 11 */}
                 <div className="cal-cell cal-week2 cal-weekend">
                   <span className="cal-day-num cal-week2-text">5</span>
                 </div>
+
+                {/* Row 3: Mon Apr 6 – Sun Apr 12 */}
                 <div className="cal-cell cal-week2">
                   <span className="cal-day-num cal-week2-text">6</span>
                 </div>
@@ -261,18 +260,10 @@ export default function ProposalPage() {
                 <div className="cal-cell cal-week2 cal-weekend">
                   <span className="cal-day-num cal-week2-text">11</span>
                 </div>
-
-                {/* Row 4: Sun Apr 12 */}
                 <div className="cal-cell cal-week2 cal-weekend">
                   <span className="cal-day-num cal-week2-text">12</span>
                   <span className="cal-pill cal-pill-kickoff">Hard deadline</span>
                 </div>
-                <div className="cal-cell cal-empty" />
-                <div className="cal-cell cal-empty" />
-                <div className="cal-cell cal-empty" />
-                <div className="cal-cell cal-empty" />
-                <div className="cal-cell cal-empty" />
-                <div className="cal-cell cal-empty" />
               </div>
 
               {/* Legend */}
@@ -328,7 +319,7 @@ export default function ProposalPage() {
               </div>
               <div className="proposal-timeline-entry">
                 <span className="proposal-timeline-date">April 12 — Hard Deadline</span>
-                <span className="proposal-timeline-desc">Everything delivered, approved, and in hand.</span>
+                <span className="proposal-timeline-desc">Everything delivered, approved, and applied.</span>
               </div>
             </div>
           </div>
