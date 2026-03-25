@@ -338,6 +338,16 @@ export default function ProposalPage() {
           </div>
         </section>
 
+        {/* Terms */}
+        <section className="proposal-section">
+          <div className="proposal-section-label">Terms</div>
+          <div className="proposal-section-body">
+            <p className="proposal-terms">
+              Full ownership transfers to MMLABS / Perebel upon payment. All fonts confirmed licensed before delivery.
+            </p>
+          </div>
+        </section>
+
         {/* Agreement */}
         <section className="proposal-section" style={{ borderBottom: 'none' }}>
           <div className="proposal-section-label">Agreement</div>
