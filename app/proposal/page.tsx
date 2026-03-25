@@ -252,17 +252,15 @@ export default function ProposalPage() {
                   <span className="cal-day-num cal-week2-text">8</span>
                   <span className="cal-pill cal-pill-delivery">Full delivery</span>
                 </div>
-                <div className="cal-cell cal-week2">
+                <div className="cal-cell cal-week2 cal-span-start">
                   <span className="cal-day-num cal-week2-text">9</span>
-                  <span className="cal-pill cal-pill-feedback">Round 2 open</span>
+                  <span className="cal-pill cal-pill-delivery cal-pill-span">Final checks</span>
                 </div>
-                <div className="cal-cell cal-week2">
+                <div className="cal-cell cal-week2 cal-span-mid">
                   <span className="cal-day-num cal-week2-text">10</span>
-                  <span className="cal-pill cal-pill-feedback">Round 2 closes</span>
                 </div>
-                <div className="cal-cell cal-week2">
+                <div className="cal-cell cal-week2 cal-span-end">
                   <span className="cal-day-num cal-week2-text">11</span>
-                  <span className="cal-pill cal-pill-delivery">Final checks</span>
                 </div>
                 <div className="cal-cell cal-week2 cal-weekend">
                   <span className="cal-day-num cal-week2-text">12</span>
