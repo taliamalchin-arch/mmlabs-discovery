@@ -10,10 +10,8 @@ export default function ProposalPage() {
   const [mounted, setMounted] = useState(false);
 
   // Signature state
-  const [taliaSignature, setTaliaSignature] = useState('');
   const [clientSignature, setClientSignature] = useState('');
   const [clientDate, setClientDate] = useState('');
-  const [taliaError, setTaliaError] = useState(false);
   const [clientError, setClientError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -37,11 +35,9 @@ export default function ProposalPage() {
   };
 
   const handleSubmit = async () => {
-    const tErr = !taliaSignature.trim();
     const cErr = !clientSignature.trim();
-    setTaliaError(tErr);
     setClientError(cErr);
-    if (tErr || cErr) return;
+    if (cErr) return;
 
     setSubmitting(true);
     setSubmitError(false);
@@ -51,7 +47,7 @@ export default function ProposalPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           _subject: 'Perebel proposal signed',
-          talia_signature: taliaSignature,
+          talia_signature: 'Talia Malchin',
           client_signature: clientSignature,
           client_date: clientDate,
           signed_at: new Date().toLocaleString(),
@@ -355,22 +351,11 @@ export default function ProposalPage() {
             {!submitted ? (
               <>
                 <div className="proposal-sig-row">
-                  {/* Block 1 — Talia */}
+                  {/* Block 1 — Talia (pre-signed) */}
                   <div className="proposal-sig-block">
                     <div className="proposal-sig-name">Talia Malchin</div>
                     <div className="proposal-sig-role">Designer &amp; Art Director</div>
-                    <input
-                      type="text"
-                      placeholder="Type full name to sign"
-                      value={taliaSignature}
-                      onChange={e => { setTaliaSignature(e.target.value); setTaliaError(false); }}
-                    />
-                    {taliaSignature && (
-                      <div className="proposal-sig-preview">{taliaSignature}</div>
-                    )}
-                    {taliaError && (
-                      <div className="proposal-sig-error">Signature required</div>
-                    )}
+                    <div className="proposal-sig-preview">Talia Malchin</div>
                     <div className="proposal-sig-date-fixed">March 25, 2026</div>
                   </div>
 
