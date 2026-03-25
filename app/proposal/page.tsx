@@ -190,11 +190,10 @@ export default function ProposalPage() {
                   <div key={d} className="cal-day-header">{d}</div>
                 ))}
 
-                {/* Row 1: March 23 (Sun) - March 29 (Sat) */}
-                {/* Mar 23, 24 empty */}
+                {/* Row 1: Sun Mar 22 – Sat Mar 28 */}
                 <div className="cal-cell cal-empty" />
                 <div className="cal-cell cal-empty" />
-                {/* Mar 25 Tue - Week 1 */}
+                <div className="cal-cell cal-empty" />
                 <div className="cal-cell cal-week1">
                   <div className="cal-week-label cal-week1-text">Week 1</div>
                   <span className="cal-day-num cal-week1-text">25</span>
@@ -206,16 +205,16 @@ export default function ProposalPage() {
                 <div className="cal-cell cal-week1">
                   <span className="cal-day-num cal-week1-text">27</span>
                 </div>
-                <div className="cal-cell cal-week1">
+                <div className="cal-cell cal-week1 cal-weekend">
                   <span className="cal-day-num cal-week1-text">28</span>
                   <span className="cal-pill cal-pill-locked">Directional confirmation</span>
                 </div>
+
+                {/* Row 2: Sun Mar 29 – Sat Apr 4 */}
                 <div className="cal-cell cal-week1 cal-weekend">
                   <span className="cal-day-num cal-week1-text">29</span>
                 </div>
-
-                {/* Row 2: March 30 (Sun) - April 5 (Sat) */}
-                <div className="cal-cell cal-week1 cal-weekend">
+                <div className="cal-cell cal-week1">
                   <span className="cal-day-num cal-week1-text">30</span>
                 </div>
                 <div className="cal-cell cal-week1">
@@ -233,16 +232,16 @@ export default function ProposalPage() {
                   <span className="cal-day-num cal-week1-text">3</span>
                   <span className="cal-pill cal-pill-locked">Direction locked</span>
                 </div>
-                <div className="cal-cell cal-week2">
+                <div className="cal-cell cal-week2 cal-weekend">
                   <div className="cal-week-label cal-week2-text">Week 2</div>
                   <span className="cal-day-num cal-week2-text">4</span>
                 </div>
+
+                {/* Row 3: Sun Apr 5 – Sat Apr 11 */}
                 <div className="cal-cell cal-week2 cal-weekend">
                   <span className="cal-day-num cal-week2-text">5</span>
                 </div>
-
-                {/* Row 3: April 6 (Sun) - April 12 (Sat) */}
-                <div className="cal-cell cal-week2 cal-weekend">
+                <div className="cal-cell cal-week2">
                   <span className="cal-day-num cal-week2-text">6</span>
                 </div>
                 <div className="cal-cell cal-week2">
@@ -259,13 +258,21 @@ export default function ProposalPage() {
                 <div className="cal-cell cal-week2 cal-span-mid">
                   <span className="cal-day-num cal-week2-text">10</span>
                 </div>
-                <div className="cal-cell cal-week2 cal-span-end">
+                <div className="cal-cell cal-week2 cal-weekend">
                   <span className="cal-day-num cal-week2-text">11</span>
                 </div>
+
+                {/* Row 4: Sun Apr 12 */}
                 <div className="cal-cell cal-week2 cal-weekend">
                   <span className="cal-day-num cal-week2-text">12</span>
                   <span className="cal-pill cal-pill-kickoff">Hard deadline</span>
                 </div>
+                <div className="cal-cell cal-empty" />
+                <div className="cal-cell cal-empty" />
+                <div className="cal-cell cal-empty" />
+                <div className="cal-cell cal-empty" />
+                <div className="cal-cell cal-empty" />
+                <div className="cal-cell cal-empty" />
               </div>
 
               {/* Legend */}
