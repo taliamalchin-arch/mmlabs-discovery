@@ -27,7 +27,7 @@ export default function ProposalPage() {
 
   const handlePassword = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === process.env.NEXT_PUBLIC_PROPOSAL_PASSWORD) {
+    if (password === '032326') {
       sessionStorage.setItem('proposal-auth', 'true');
       setUnlocked(true);
     } else {
