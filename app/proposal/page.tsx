@@ -208,6 +208,7 @@ export default function ProposalPage() {
                 </div>
                 <div className="cal-cell cal-week1">
                   <span className="cal-day-num cal-week1-text">28</span>
+                  <span className="cal-pill cal-pill-locked">Directional confirmation</span>
                 </div>
                 <div className="cal-cell cal-week1 cal-weekend">
                   <span className="cal-day-num cal-week1-text">29</span>
@@ -261,6 +262,7 @@ export default function ProposalPage() {
                 </div>
                 <div className="cal-cell cal-week2">
                   <span className="cal-day-num cal-week2-text">11</span>
+                  <span className="cal-pill cal-pill-delivery">Final checks</span>
                 </div>
                 <div className="cal-cell cal-week2 cal-weekend">
                   <span className="cal-day-num cal-week2-text">12</span>
@@ -316,8 +318,8 @@ export default function ProposalPage() {
                 <span className="proposal-timeline-desc">Full system built out. Cheat sheet designed. All files packaged. Full delivery by end of day April 8.</span>
               </div>
               <div className="proposal-timeline-entry">
-                <span className="proposal-timeline-date">April 9 to April 10 — Revision Round 2</span>
-                <span className="proposal-timeline-desc">Refinements only. Feedback due by end of day April 10.</span>
+                <span className="proposal-timeline-date">April 9 to April 10 — Final Checks and QA</span>
+                <span className="proposal-timeline-desc">Sam and Alvin apply deliverables, Talia stands by for extra guidance/QA/filling in missing pieces.</span>
               </div>
               <div className="proposal-timeline-entry">
                 <span className="proposal-timeline-date">April 12 — Hard Deadline</span>
@@ -333,16 +335,6 @@ export default function ProposalPage() {
           <div className="proposal-section-body">
             <div className="proposal-fee">$600</div>
             <p className="proposal-fee-note">Flat fee. Payment in full upon final delivery.</p>
-          </div>
-        </section>
-
-        {/* Terms */}
-        <section className="proposal-section">
-          <div className="proposal-section-label">Terms</div>
-          <div className="proposal-section-body">
-            <p className="proposal-terms">
-              Two to three revision rounds included as outlined above. Revision Round 1 is for direction selection. Revision Round 2 is for refinements. Any additions to scope will be agreed before work begins. Full ownership transfers to MMLABS / Perebel upon payment. All fonts confirmed licensed before delivery.
-            </p>
           </div>
         </section>
 
