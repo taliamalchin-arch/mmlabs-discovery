@@ -156,7 +156,7 @@
 .cal-pill-span {
   position: absolute;
   left: 3px;
-  width: calc(200% - 6px);
+  width: calc(300% - 8px);
   z-index: 2;
   text-align: center;
 }
