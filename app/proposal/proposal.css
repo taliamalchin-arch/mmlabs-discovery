@@ -1,0 +1,394 @@
+/* ── Password Gate ── */
+
+.proposal-gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proposal-gate-inner {
+  width: 100%;
+  max-width: 360px;
+  padding: 0 1.5rem;
+}
+
+.proposal-gate-error {
+  font-size: 0.78rem;
+  color: var(--ink3);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+/* ── Proposal Header ── */
+
+.proposal-header {
+  padding-bottom: 2rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.proposal-eyebrow {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink3);
+  margin-bottom: 0.75rem;
+}
+
+.proposal-title {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.proposal-prepared {
+  font-size: 0.85rem;
+  color: var(--ink3);
+}
+
+/* ── Section Layout ── */
+
+.proposal-section {
+  border-bottom: 1px solid var(--border);
+}
+
+.proposal-section-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink3);
+  padding: 1.75rem 0 0.875rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.proposal-section-body {
+  padding: 1.75rem 0 2rem;
+}
+
+/* ── Deliverables ── */
+
+.proposal-deliverable {
+  margin-bottom: 1.75rem;
+}
+
+.proposal-deliverable-title {
+  font-weight: 500;
+  font-size: 0.935rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.proposal-list {
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--ink2);
+}
+
+.proposal-list li {
+  margin-bottom: 0.15rem;
+}
+
+.proposal-list-nested {
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+
+.proposal-exclusion {
+  font-size: 0.85rem;
+  color: var(--ink3);
+  line-height: 1.75;
+  margin-top: 1.5rem;
+}
+
+/* ── Calendar ── */
+
+.proposal-calendar {
+  margin-bottom: 2.5rem;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+.cal-day-header {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink3);
+  text-align: center;
+  padding: 0 0 8px;
+}
+
+.cal-cell {
+  min-height: 52px;
+  padding: 5px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.cal-empty {
+  background: transparent;
+}
+
+.cal-week1 {
+  background: #e1f5ee;
+}
+
+.cal-week2 {
+  background: #eef2ff;
+}
+
+.cal-weekend {
+  opacity: 0.4;
+}
+
+.cal-day-num {
+  font-size: 11px;
+  font-weight: 500;
+  display: block;
+}
+
+.cal-week1-text {
+  color: #085041;
+}
+
+.cal-week2-text {
+  color: #3a4fa8;
+}
+
+.cal-week-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+
+/* ── Event Pills ── */
+
+.cal-pill {
+  font-size: 9px;
+  font-weight: 500;
+  border-radius: 2px;
+  padding: 2px 4px;
+  display: block;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cal-pill-kickoff {
+  background: #0f0e0d;
+  color: #fff;
+}
+
+.cal-pill-options {
+  background: #085041;
+  color: #fff;
+}
+
+.cal-pill-feedback {
+  background: #ef9f27;
+  color: #633806;
+}
+
+.cal-pill-locked {
+  background: #7f77dd;
+  color: #fff;
+}
+
+.cal-pill-delivery {
+  background: #3a4fa8;
+  color: #fff;
+}
+
+/* ── Legend ── */
+
+.cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--ink3);
+  margin-top: 12px;
+}
+
+.cal-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cal-swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ── Written Timeline ── */
+
+.proposal-timeline-entries {
+  margin-top: 0;
+}
+
+.proposal-timeline-entry {
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.proposal-timeline-entry:last-child {
+  border-bottom: none;
+}
+
+.proposal-timeline-date {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.proposal-timeline-desc {
+  font-size: 0.9rem;
+  color: var(--ink3);
+  line-height: 1.75;
+}
+
+/* ── Investment ── */
+
+.proposal-fee {
+  font-family: var(--serif);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.proposal-fee-note {
+  font-size: 0.85rem;
+  color: var(--ink3);
+}
+
+/* ── Terms ── */
+
+.proposal-terms {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--ink3);
+}
+
+/* ── Agreement ── */
+
+.proposal-agreement-intro {
+  font-size: 0.85rem;
+  color: var(--ink3);
+  margin-bottom: 2rem;
+}
+
+.proposal-sig-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.proposal-sig-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.proposal-sig-name {
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.proposal-sig-role {
+  font-size: 0.82rem;
+  color: var(--ink3);
+  margin-bottom: 0.75rem;
+}
+
+.proposal-sig-preview {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-top: 0.5rem;
+}
+
+.proposal-sig-error {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-top: 0.35rem;
+}
+
+.proposal-sig-date-fixed {
+  font-size: 0.82rem;
+  color: var(--ink3);
+  margin-top: 0.5rem;
+}
+
+.proposal-submit-btn {
+  width: 100%;
+}
+
+.proposal-submit-error {
+  font-size: 0.82rem;
+  color: var(--ink3);
+  margin-top: 0.75rem;
+}
+
+/* ── Confirmation Banner ── */
+
+.proposal-confirmed {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: var(--r);
+  padding: 1rem 1.25rem;
+}
+
+.proposal-confirmed-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--warn);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.proposal-confirmed-text {
+  font-size: 0.845rem;
+  line-height: 1.75;
+  color: #5a4500;
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 560px) {
+  .proposal-sig-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cal-pill {
+    font-size: 7px;
+    padding: 1px 2px;
+  }
+
+  .cal-day-num {
+    font-size: 10px;
+  }
+
+  .cal-cell {
+    min-height: 44px;
+    padding: 3px;
+  }
+}
