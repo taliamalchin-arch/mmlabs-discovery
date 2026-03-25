@@ -16,11 +16,23 @@ export default function ProposalPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const [savedSignature, setSavedSignature] = useState<{ client_signature: string; client_date: string; signed_at: string } | null>(null);
 
   useEffect(() => {
     setMounted(true);
     const stored = sessionStorage.getItem('proposal-auth');
     if (stored === 'true') setUnlocked(true);
+
+    // Check if already signed
+    fetch('/api/proposal')
+      .then(r => r.json())
+      .then(data => {
+        if (data.signed) {
+          setSubmitted(true);
+          setSavedSignature(data);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const handlePassword = (e: React.FormEvent) => {
@@ -55,6 +67,18 @@ export default function ProposalPage() {
         }),
       });
       if (!res.ok) throw new Error();
+      // Persist signed state to Redis
+      const signedData = {
+        client_signature: clientSignature,
+        client_date: clientDate,
+        signed_at: new Date().toLocaleString(),
+      };
+      await fetch('/api/proposal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(signedData),
+      });
+      setSavedSignature(signedData);
       setSubmitted(true);
     } catch {
       setSubmitError(true);
@@ -400,12 +424,36 @@ export default function ProposalPage() {
                 )}
               </>
             ) : (
-              <div className="proposal-confirmed">
-                <div className="proposal-confirmed-label">Signed and submitted</div>
-                <div className="proposal-confirmed-text">
-                  Talia has been notified and will confirm receipt and next steps shortly.
+              <>
+                <div className="proposal-sig-row">
+                  {/* Block 1 — Talia (pre-signed) */}
+                  <div className="proposal-sig-block">
+                    <div className="proposal-sig-name">Talia Malchin</div>
+                    <div className="proposal-sig-role">Designer &amp; Art Director</div>
+                    <div className="proposal-sig-preview">Talia Malchin</div>
+                    <div className="proposal-sig-date-fixed">March 25, 2026</div>
+                  </div>
+
+                  {/* Block 2 — Client (signed) */}
+                  <div className="proposal-sig-block">
+                    <div className="proposal-sig-name">Sam Bamigboye / Alvin Chen</div>
+                    <div className="proposal-sig-role">MMLABS / Perebel</div>
+                    <div className="proposal-sig-preview">
+                      {savedSignature?.client_signature || clientSignature}
+                    </div>
+                    <div className="proposal-sig-date-fixed">
+                      {savedSignature?.client_date || clientDate}
+                    </div>
+                  </div>
                 </div>
-              </div>
+
+                <div className="proposal-confirmed">
+                  <div className="proposal-confirmed-label">Signed and submitted</div>
+                  <div className="proposal-confirmed-text">
+                    Talia has been notified and will confirm receipt and next steps shortly.
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </section>
