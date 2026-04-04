@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.11 105.11">
+  <circle fill="currentColor" cx="52.56" cy="19.86" r="19.86"/>
+  <path fill="currentColor" d="M44.54,28.58h6.8v17.7c0,1.19-.96,2.15-2.15,2.15h-2.5c-1.19,0-2.15-.96-2.15-2.15v-17.7h0Z" transform="translate(-13.19 45.18) rotate(-45)"/>
+  <circle fill="currentColor" cx="52.56" cy="85.25" r="19.86"/>
+  <path fill="currentColor" d="M53.77,56.67h6.8v17.7c0,1.19-.96,2.15-2.15,2.15h-2.5c-1.19,0-2.15-.96-2.15-2.15v-17.7h0Z" transform="translate(144.69 73.26) rotate(135)"/>
+  <circle fill="currentColor" cx="85.25" cy="52.56" r="19.86"/>
+  <path fill="currentColor" d="M63.2,38.01h6.8v17.7c0,1.19-.96,2.15-2.15,2.15h-2.5c-1.19,0-2.15-.96-2.15-2.15v-17.7h0Z" transform="translate(53.4 -33.05) rotate(45)"/>
+  <circle fill="currentColor" cx="19.86" cy="52.56" r="19.86"/>
+  <path fill="currentColor" d="M35.11,47.24h6.8v17.7c0,1.19-.96,2.15-2.15,2.15h-2.5c-1.19,0-2.15-.96-2.15-2.15v-17.7h0Z" transform="translate(25.32 124.83) rotate(-135)"/>
+</svg>

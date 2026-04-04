@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.63 38.81">
+  <rect fill="#e5e5e5" x="-1.09" y="1.09" width="38.81" height="36.63" rx="1.18" ry="1.18" transform="translate(-1.09 37.72) rotate(-90)"/>
+  <rect fill="currentColor" x="1.76" y="26.43" width="4.73" height="1.94" rx=".18" ry=".18"/>
+  <rect fill="currentColor" x="8.33" y="30.21" width="1.94" height="6.73" rx=".18" ry=".18"/>
+  <path fill="#e5e5e5" d="M34.88,1.75v35.31H1.75V1.75h33.13M35.46,0H1.18C.53,0,0,.53,0,1.18v36.45C0,38.28.53,38.81,1.18,38.81h34.28c.65,0,1.18-.53,1.18-1.18V1.18C36.63.53,36.11,0,35.46,0h0Z"/>
+  <path fill="#e5e5e5" d="M34.88,1.75v22.86H12.02V1.75h22.86M35.46,0H11.44C10.79,0,10.27.53,10.27,1.18v24.01c0,.65.53,1.18,1.18,1.18h24.01c.65,0,1.18-.53,1.18-1.18V1.18C36.63.53,36.11,0,35.46,0h0Z"/>
+  <rect fill="currentColor" x="8.33" y="1.86" width="1.94" height="22.73" rx=".18" ry=".18"/>
+  <rect fill="currentColor" x="12.11" y="26.43" width="22.76" height="1.94" rx=".18" ry=".18"/>
+</svg>
