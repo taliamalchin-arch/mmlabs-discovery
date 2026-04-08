@@ -7,90 +7,77 @@ import './brand-mixer.css';
 
 const PALETTES = [
   {
-    name: 'Palette 1',
-    light: '#f0e8e0', primary: '#2a1a1a', mid1: '#e0dece',
-    mid2: '#adbcc0', dark: '#7e4040', accent: '#e06048',
+    name: 'Palette 5',
+    light: '#f4f0e2',
+    lightAlt: '#d6c5a4',
+    dark: '#291108',
+    darkAlt: '#8a2c11',
+    accent1: '#8db4d3',
+    accent2: '#4a591e',
+    accent3: '#ecc245',
+    accent4: '#de7330',
   },
   {
-    name: 'Palette 2',
-    light: '#e8e2da', primary: '#3a5666', mid1: '#bab28a',
-    mid2: '#96a6b4', dark: '#181828', accent: '#F75360',
+    name: 'Palette 6',
+    light: '#f4f0e2',
+    lightAlt: '#d4be90',
+    dark: '#291108',
+    darkAlt: '#882c0e',
+    accent1: '#f0c5d2',
+    accent2: '#eee99a',
+    accent3: '#ed9839',
+    accent4: '#9d96d8',
   },
   {
-    name: 'Palette 3',
-    light: '#EFEFEF', primary: '#262928', mid1: '#C3D2E4',
-    mid2: '#B8B4B4', dark: '#071857', accent: '#ECF170',
+    name: 'Palette 7',
+    light: '#f4f0e2',
+    lightAlt: '#dccba9',
+    dark: '#291108',
+    darkAlt: '#882c0e',
+    accent1: '#95c2d4',
+    accent2: '#3a7a96',
+    accent3: '#edb750',
+    accent4: '#e8843a',
   },
   {
-    name: 'Palette 4',
-    light: '#f0eee0', primary: '#0e1226', mid1: '#bab2c2',
-    mid2: '#ba9236', dark: '#4a4e34', accent: '#3254ae',
+    name: 'Palette 8',
+    light: '#f5f1e3',
+    lightAlt: '#f1c8a3',
+    dark: '#291108',
+    darkAlt: '#882c0e',
+    accent1: '#df8a78',
+    accent2: '#f4d8da',
+    accent3: '#edb750',
+    accent4: '#e8843a',
   },
 ];
 
 const TYPES = [
   {
-    name: 'Sentient × Public Sans',
-    display: "'Sentient', Georgia, serif",
-    ui: "'Public Sans', system-ui, sans-serif",
-    trackingHeadline: '-0.03em',
-    trackingSuper: '0.12em',
-    superWeight: 500,
-    displayName: 'Sentient',
-    uiName: 'Public Sans',
-  },
-  {
-    name: 'Source Serif 4 × Geist',
-    display: "'Source Serif 4', Georgia, serif",
-    ui: "'Geist', system-ui, sans-serif",
-    trackingHeadline: '-0.03em',
-    trackingSuper: '0.2em',
-    superWeight: 600,
-    displayName: 'Source Serif 4',
-    uiName: 'Geist',
-  },
-  {
-    name: 'Karma × General Sans',
-    display: "'Karma', Georgia, serif",
+    name: 'Garamond × General Sans',
+    display: "'EB Garamond', Garamond, Georgia, serif",
     ui: "'General Sans', system-ui, sans-serif",
     trackingHeadline: '-0.02em',
-    trackingSuper: '0.12em',
+    trackingSuper: '0.14em',
     superWeight: 500,
-    displayName: 'Karma',
+    displayName: 'Garamond',
     uiName: 'General Sans',
   },
   {
-    name: 'Gambarino × IBM Plex Sans',
-    display: "'Gambarino', Georgia, serif",
+    name: 'Garamond × IBM Plex Sans',
+    display: "'EB Garamond', Garamond, Georgia, serif",
     ui: "'IBM Plex Sans', system-ui, sans-serif",
-    trackingHeadline: '0em',
-    trackingSuper: '0.12em',
-    superWeight: 600,
-    displayName: 'Gambarino',
+    trackingHeadline: '-0.02em',
+    trackingSuper: '0.14em',
+    superWeight: 500,
+    displayName: 'Garamond',
     uiName: 'IBM Plex Sans',
   },
 ];
 
 const LOGOS = [
-  { name: '04', src: '/logos/perebel-04.svg' },
-  { name: '05', src: '/logos/perebel-05.svg' },
-  { name: '06', src: '/logos/perebel-06.svg' },
-  { name: '07', src: '/logos/perebel-07.svg' },
-  { name: '08', src: '/logos/perebel-08.svg' },
-  { name: '09', src: '/logos/perebel-09.svg' },
-  { name: '10', src: '/logos/perebel-10.svg' },
-  { name: '11', src: '/logos/perebel-11.svg' },
-  { name: '12', src: '/logos/perebel-12.svg' },
-  { name: '13', src: '/logos/perebel-13.svg' },
-  { name: '14', src: '/logos/perebel-14.svg' },
-  { name: '15', src: '/logos/perebel-15.svg' },
-  { name: '16', src: '/logos/perebel-16.svg' },
-  { name: '17', src: '/logos/perebel-17.svg' },
-  { name: '18', src: '/logos/perebel-18.svg' },
-  { name: '19', src: '/logos/perebel-19.svg' },
-  { name: '20', src: '/logos/perebel-20.svg' },
-  { name: '21', src: '/logos/perebel-21.svg' },
-  { name: '23', src: '/logos/perebel-23.svg' },
+  { name: 'A', src: '/logos/perebel-mark-a.svg' },
+  { name: 'B', src: '/logos/perebel-mark-b.svg' },
 ];
 
 const VIEWS = ['Hero', 'Card', 'Marketing'] as const;
@@ -124,11 +111,13 @@ function BrandLogo({ src, height, invert }: { src: string; height: number; inver
 function SwatchStrip({ palette, small }: { palette: typeof PALETTES[0]; small?: boolean }) {
   const swatches = [
     { hex: palette.light, label: 'light' },
-    { hex: palette.primary, label: 'primary' },
-    { hex: palette.mid1, label: 'mid1' },
-    { hex: palette.mid2, label: 'mid2' },
+    { hex: palette.lightAlt, label: 'lightAlt' },
+    { hex: palette.accent1, label: 'accent1' },
+    { hex: palette.accent2, label: 'accent2' },
+    { hex: palette.accent3, label: 'accent3' },
+    { hex: palette.accent4, label: 'accent4' },
+    { hex: palette.darkAlt, label: 'darkAlt' },
     { hex: palette.dark, label: 'dark' },
-    { hex: palette.accent, label: 'accent' },
   ];
 
   function contrastColor(hex: string) {
@@ -173,6 +162,7 @@ function CaseCard({ dark }: { dark?: boolean }) {
         <span className="bm-tag">Filed</span>
         <span className="bm-tag">Reviewed</span>
         <span className="bm-tag">I-485</span>
+        <span className="bm-tag">Priority</span>
       </div>
     </div>
   );
@@ -272,7 +262,7 @@ function MarketingView({ logoSrc, palette }: { logoSrc: string; palette: typeof 
         </div>
         <div className="bm-mktg-bottom">
           <div>
-            <div className="bm-mktg-cta" style={{ color: contrastColor(palette.accent) }}>Get early access</div>
+            <div className="bm-mktg-cta" style={{ color: contrastColor(palette.lightAlt) }}>Get early access</div>
             <div className="bm-mktg-url">perebel.ai</div>
           </div>
           <div className="bm-mktg-card">
@@ -301,11 +291,13 @@ export default function BrandMixerPage() {
       className="bm-page"
       style={{
         '--color-light': palette.light,
-        '--color-primary': palette.primary,
-        '--color-mid1': palette.mid1,
-        '--color-mid2': palette.mid2,
+        '--color-light-alt': palette.lightAlt,
         '--color-dark': palette.dark,
-        '--color-accent': palette.accent,
+        '--color-dark-alt': palette.darkAlt,
+        '--color-accent-1': palette.accent1,
+        '--color-accent-2': palette.accent2,
+        '--color-accent-3': palette.accent3,
+        '--color-accent-4': palette.accent4,
         '--font-display': typeSystem.display,
         '--font-ui': typeSystem.ui,
         '--tracking-headline': typeSystem.trackingHeadline,
