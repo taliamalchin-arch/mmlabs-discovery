@@ -128,10 +128,20 @@
 .bm-view-toggle {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0;
   padding: 0 20px;
   background: #fff;
   border-bottom: 1px solid #e0e0e0;
+  position: relative;
+}
+.bm-hero-theme-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 6px;
 }
 .bm-view-btn {
   font-family: system-ui, sans-serif;
@@ -245,6 +255,24 @@
 .bm-hero-card-wrap .bm-case-card {
   width: 360px;
   transform: rotate(-1deg);
+}
+
+/* ── Hero dark variant ── */
+.bm-hero--dark {
+  background: var(--color-dark-alt);
+}
+.bm-hero--dark .bm-hero-nav {
+  border-bottom: 1px solid var(--color-dark);
+}
+.bm-hero--dark .bm-hero-wordmark,
+.bm-hero--dark .bm-hero-nav-links span,
+.bm-hero--dark .bm-hero-headline,
+.bm-hero--dark .bm-hero-body {
+  color: var(--color-light);
+}
+.bm-hero--dark .bm-hero-cta {
+  background: var(--color-light);
+  color: var(--color-dark);
 }
 
 /* ── Swatch strip ── */
