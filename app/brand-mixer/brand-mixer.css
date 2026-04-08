@@ -259,9 +259,6 @@
 
 /* ── Hero dark variant ── */
 .bm-hero--dark {
-  background: var(--color-dark-alt);
-}
-.bm-page--p2 .bm-hero--dark {
   background: var(--color-dark);
 }
 .bm-hero--dark .bm-hero-nav {
