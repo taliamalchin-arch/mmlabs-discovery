@@ -289,7 +289,7 @@ export default function BrandMixerPage() {
 
   return (
     <div
-      className="bm-page"
+      className={`bm-page bm-page--p${paletteIdx + 1}`}
       style={{
         '--color-light': palette.light,
         '--color-light-alt': palette.lightAlt,
