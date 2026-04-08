@@ -262,7 +262,7 @@
   background: var(--color-dark);
 }
 .bm-hero--dark .bm-hero-card-wrap .bm-case-card--dark {
-  border-color: var(--color-light-alt);
+  border: 2px solid var(--color-light-alt);
 }
 .bm-hero--dark .bm-hero-nav {
   border-bottom: 1px solid var(--color-dark);
