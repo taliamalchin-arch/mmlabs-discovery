@@ -279,7 +279,7 @@
 }
 .bm-case-card--dark {
   background: var(--color-dark);
-  border: 1px solid var(--color-dark-alt);
+  border: 1px solid var(--color-dark);
 }
 .bm-case-top {
   display: flex;
@@ -394,7 +394,7 @@
   border: 1px solid var(--color-light-alt);
 }
 .bm-stack-card--dark {
-  background: var(--color-dark);
+  background: var(--color-dark-alt);
   border: 1px solid var(--color-dark-alt);
 }
 .bm-stack-card-label {
@@ -432,7 +432,7 @@
   width: 100%;
   max-width: 800px;
   aspect-ratio: 1 / 1;
-  background: var(--color-dark);
+  background: var(--color-dark-alt);
   border-radius: 16px;
   overflow: hidden;
   padding: 48px;
@@ -441,14 +441,6 @@
   justify-content: space-between;
   box-sizing: border-box;
   position: relative;
-}
-.bm-marketing::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border: 1px solid var(--color-dark-alt);
-  border-radius: 16px;
 }
 .bm-mktg-top-left svg,
 .bm-mktg-top-left .bm-brand-logo { height: 56px; width: auto; }
