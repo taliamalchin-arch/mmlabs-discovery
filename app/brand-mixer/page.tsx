@@ -78,6 +78,8 @@ const TYPES = [
 const LOGOS = [
   { name: 'A', src: '/logos/perebel-mark-a.svg' },
   { name: 'B', src: '/logos/perebel-mark-b.svg' },
+  { name: 'C', src: '/logos/perebel-mark-c.svg' },
+  { name: 'D', src: '/logos/perebel-mark-d.svg' },
 ];
 
 const VIEWS = ['Hero', 'Card', 'Marketing'] as const;
