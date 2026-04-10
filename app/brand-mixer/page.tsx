@@ -7,7 +7,7 @@ import './brand-mixer.css';
 
 const PALETTES = [
   {
-    name: 'Palette 5',
+    name: 'Palette 1',
     light: '#f4f0e2',
     lightAlt: '#d6c5a4',
     dark: '#1c0801',
@@ -18,33 +18,33 @@ const PALETTES = [
     accent4: '#de7330',
   },
   {
-    name: 'Palette 6',
+    name: 'Palette 2',
     light: '#f4f0e2',
     lightAlt: '#d4be90',
     dark: '#1c0801',
-    darkAlt: '#882c0e',
+    darkAlt: '#4c1002',
     accent1: '#f0c5d2',
     accent2: '#eee99a',
     accent3: '#ed9839',
     accent4: '#9d96d8',
   },
   {
-    name: 'Palette 7',
+    name: 'Palette 3',
     light: '#f4f0e2',
     lightAlt: '#dccba9',
     dark: '#1c0801',
-    darkAlt: '#4c1002',
+    darkAlt: '#631300',
     accent1: '#95c2d4',
     accent2: '#3a7a96',
     accent3: '#edb750',
     accent4: '#e8843a',
   },
   {
-    name: 'Palette 8',
+    name: 'Palette 4',
     light: '#f5f1e3',
     lightAlt: '#f1c8a3',
-    dark: '#1c0801',
-    darkAlt: '#4c1002',
+    dark: '#2B0000',
+    darkAlt: '#631300',
     accent1: '#df8a78',
     accent2: '#f4d8da',
     accent3: '#edb750',
@@ -63,23 +63,15 @@ const TYPES = [
     displayName: 'Garamond',
     uiName: 'General Sans',
   },
-  {
-    name: 'Garamond × IBM Plex Sans',
-    display: "'EB Garamond', Garamond, Georgia, serif",
-    ui: "'IBM Plex Sans', system-ui, sans-serif",
-    trackingHeadline: '-0.02em',
-    trackingSuper: '0.14em',
-    superWeight: 500,
-    displayName: 'Garamond',
-    uiName: 'IBM Plex Sans',
-  },
 ];
 
-const LOGOS = [
-  { name: 'A', src: '/logos/perebel-mark-a.svg' },
-  { name: 'B', src: '/logos/perebel-mark-b.svg' },
-  { name: 'C', src: '/logos/perebel-mark-c.svg' },
-  { name: 'D', src: '/logos/perebel-mark-d.svg' },
+const LOGO_COLORS = [
+  { name: 'Light', key: 'light' },
+  { name: 'Dark', key: 'dark' },
+  { name: 'Accent 1', key: 'accent1' },
+  { name: 'Accent 2', key: 'accent2' },
+  { name: 'Accent 3', key: 'accent3' },
+  { name: 'Accent 4', key: 'accent4' },
 ];
 
 const VIEWS = ['Hero', 'Card', 'Marketing'] as const;
@@ -94,17 +86,21 @@ function contrastColor(hex: string) {
   return (r * 299 + g * 587 + b * 114) / 1000 > 140 ? '#000' : '#fff';
 }
 
-/* ── BrandLogo — renders logo as <img> to preserve multi-color detail ── */
+/* ── BrandLogo — renders logo D with dynamic color ── */
 
-function BrandLogo({ src, height, invert }: { src: string; height: number; invert?: boolean }) {
+function BrandLogo({ height, color, invert }: { height: number; color: string; invert?: boolean }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <svg
       className={`bm-brand-logo ${invert ? 'bm-brand-logo--invert' : ''}`}
-      src={src}
-      alt=""
+      width="300"
+      height="384"
+      viewBox="0 0 300 384"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       style={{ height, width: 'auto' }}
-    />
+    >
+      <path d="M150 0C232.843 0 300 67.1573 300 150V384H0V150C0 67.1573 67.1573 0 150 0ZM170 244C164.477 244 160 248.477 160 254V334C160 339.523 164.477 344 170 344H250C255.523 344 260 339.523 260 334V254C260 248.477 255.523 244 250 244H170Z" fill={color} />
+    </svg>
   );
 }
 
@@ -172,12 +168,12 @@ function CaseCard({ dark }: { dark?: boolean }) {
 
 /* ── Hero view ── */
 
-function HeroView({ palette, logoSrc, dark }: { palette: typeof PALETTES[0]; logoSrc: string; dark?: boolean }) {
+function HeroView({ palette, logoColor, dark }: { palette: typeof PALETTES[0]; logoColor: string; dark?: boolean }) {
   return (
     <div className={`bm-hero ${dark ? 'bm-hero--dark' : ''}`}>
       <nav className="bm-hero-nav">
         <div className="bm-hero-nav-left">
-          <BrandLogo src={logoSrc} height={32} invert={dark} />
+          <BrandLogo color={logoColor} height={32} invert={dark} />
           <span className="bm-hero-wordmark">Perebel</span>
         </div>
         <div className="bm-hero-nav-links">
@@ -207,7 +203,7 @@ function HeroView({ palette, logoSrc, dark }: { palette: typeof PALETTES[0]; log
 
 /* ── Card stack view ── */
 
-function CardStackView({ palette, typeSystem, logoSrc }: { palette: typeof PALETTES[0]; typeSystem: typeof TYPES[0]; logoSrc: string }) {
+function CardStackView({ palette, typeSystem, logoColor }: { palette: typeof PALETTES[0]; typeSystem: typeof TYPES[0]; logoColor: string }) {
   const cards: { label: string; dark: boolean }[] = [
     { label: 'Light', dark: false },
     { label: 'Dark', dark: true },
@@ -224,7 +220,7 @@ function CardStackView({ palette, typeSystem, logoSrc }: { palette: typeof PALET
             <div className="bm-stack-card-label">{card.label}</div>
             <div className="bm-stack-logo">
               <BrandLogo
-                src={logoSrc}
+                color={logoColor}
                 height={48}
                 invert={card.dark}
               />
@@ -243,12 +239,12 @@ function CardStackView({ palette, typeSystem, logoSrc }: { palette: typeof PALET
 
 /* ── Marketing view ── */
 
-function MarketingView({ logoSrc, palette }: { logoSrc: string; palette: typeof PALETTES[0] }) {
+function MarketingView({ logoColor, palette }: { logoColor: string; palette: typeof PALETTES[0] }) {
   return (
     <div className="bm-marketing-wrap">
       <div className="bm-marketing">
         <div className="bm-mktg-top-left">
-          <BrandLogo src={logoSrc} height={56} invert />
+          <BrandLogo color={logoColor} height={56} invert />
           <div className="bm-mktg-wordmark">Perebel</div>
         </div>
         <div className="bm-mktg-body">
@@ -280,14 +276,20 @@ function MarketingView({ logoSrc, palette }: { logoSrc: string; palette: typeof 
 
 export default function BrandMixerPage() {
   const [paletteIdx, setPaletteIdx] = useState(0);
-  const [typeIdx, setTypeIdx] = useState(0);
-  const [logoIdx, setLogoIdx] = useState(0);
+  const [logoColorIdx, setLogoColorIdx] = useState(0);
   const [view, setView] = useState<View>('Hero');
   const [heroDark, setHeroDark] = useState(false);
 
   const palette = PALETTES[paletteIdx];
-  const typeSystem = TYPES[typeIdx];
-  const logoSrc = LOGOS[logoIdx].src;
+  const typeSystem = TYPES[0];
+
+  const getLogoColor = () => {
+    const colorKey = LOGO_COLORS[logoColorIdx].key;
+    if (colorKey === 'light') return palette.light;
+    if (colorKey === 'dark') return palette.dark;
+    return palette[colorKey as keyof typeof palette] || palette.accent1;
+  };
+  const logoColor = getLogoColor();
 
   return (
     <div
@@ -310,18 +312,16 @@ export default function BrandMixerPage() {
     >
       {/* Toolbar */}
       <div className="bm-toolbar">
-        <div className="bm-logo-picker">
-          <span className="bm-selector-label">Logo</span>
-          {LOGOS.map((l, i) => (
+        <div className="bm-selector">
+          <span className="bm-selector-label">Logo Color</span>
+          {LOGO_COLORS.map((lc, i) => (
             <button
               type="button"
-              key={l.name}
-              className={`bm-logo-thumb ${i === logoIdx ? 'bm-logo-thumb--active' : ''}`}
-              onClick={() => setLogoIdx(i)}
-              title={l.name}
+              key={lc.key}
+              className={`bm-chip ${i === logoColorIdx ? 'bm-chip--palette-active' : ''}`}
+              onClick={() => setLogoColorIdx(i)}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={l.src} alt={l.name} />
+              {lc.name}
             </button>
           ))}
         </div>
@@ -336,20 +336,6 @@ export default function BrandMixerPage() {
               onClick={() => setPaletteIdx(i)}
             >
               P{i + 1}
-            </button>
-          ))}
-        </div>
-
-        <div className="bm-selector">
-          <span className="bm-selector-label">Type</span>
-          {TYPES.map((t, i) => (
-            <button
-              type="button"
-              key={t.name}
-              className={`bm-chip ${i === typeIdx ? 'bm-chip--type-active' : ''}`}
-              onClick={() => setTypeIdx(i)}
-            >
-              T{i + 1}
             </button>
           ))}
         </div>
@@ -388,9 +374,9 @@ export default function BrandMixerPage() {
       </div>
 
       {/* Views */}
-      {view === 'Hero' && <HeroView palette={palette} logoSrc={logoSrc} dark={heroDark} />}
-      {view === 'Card' && <CardStackView palette={palette} typeSystem={typeSystem} logoSrc={logoSrc} />}
-      {view === 'Marketing' && <MarketingView logoSrc={logoSrc} palette={palette} />}
+      {view === 'Hero' && <HeroView palette={palette} logoColor={logoColor} dark={heroDark} />}
+      {view === 'Card' && <CardStackView palette={palette} typeSystem={typeSystem} logoColor={logoColor} />}
+      {view === 'Marketing' && <MarketingView logoColor={logoColor} palette={palette} />}
     </div>
   );
 }
