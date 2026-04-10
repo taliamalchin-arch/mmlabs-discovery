@@ -65,14 +65,6 @@ const TYPES = [
   },
 ];
 
-const LOGO_COLORS = [
-  { name: 'Light', key: 'light' },
-  { name: 'Dark', key: 'dark' },
-  { name: 'Accent 1', key: 'accent1' },
-  { name: 'Accent 2', key: 'accent2' },
-  { name: 'Accent 3', key: 'accent3' },
-  { name: 'Accent 4', key: 'accent4' },
-];
 
 const VIEWS = ['Hero', 'Card', 'Marketing'] as const;
 type View = (typeof VIEWS)[number];
@@ -278,20 +270,12 @@ function MarketingView({ logoColor, palette }: { logoColor: string; palette: typ
 
 export default function BrandMixerPage() {
   const [paletteIdx, setPaletteIdx] = useState(0);
-  const [logoColorIdx, setLogoColorIdx] = useState(0);
-  const [view, setView] = useState<View>('Hero');
+  const [view, setView] = useState<View>('Card');
   const [heroDark, setHeroDark] = useState(false);
 
   const palette = PALETTES[paletteIdx];
   const typeSystem = TYPES[0];
-
-  const getLogoColor = () => {
-    const colorKey = LOGO_COLORS[logoColorIdx].key;
-    if (colorKey === 'light') return palette.light;
-    if (colorKey === 'dark') return palette.dark;
-    return palette[colorKey as keyof typeof palette] || palette.accent1;
-  };
-  const logoColor = getLogoColor();
+  const logoColor = palette.dark;
 
   return (
     <div
@@ -314,20 +298,6 @@ export default function BrandMixerPage() {
     >
       {/* Toolbar */}
       <div className="bm-toolbar">
-        <div className="bm-selector">
-          <span className="bm-selector-label">Logo Color</span>
-          {LOGO_COLORS.map((lc, i) => (
-            <button
-              type="button"
-              key={lc.key}
-              className={`bm-chip ${i === logoColorIdx ? 'bm-chip--palette-active' : ''}`}
-              onClick={() => setLogoColorIdx(i)}
-            >
-              {lc.name}
-            </button>
-          ))}
-        </div>
-
         <div className="bm-selector">
           <span className="bm-selector-label">Palette</span>
           {PALETTES.map((p, i) => (
