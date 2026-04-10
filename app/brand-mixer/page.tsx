@@ -10,7 +10,7 @@ const PALETTES = [
     name: 'Palette 1',
     light: '#f4f0e2',
     lightAlt: '#dccba9',
-    dark: '#1c0801',
+    dark: '#2B0000',
     darkAlt: '#8a2c11',
     accent1: '#95c2d4',
     accent2: '#3a7a96',
