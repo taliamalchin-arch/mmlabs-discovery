@@ -167,7 +167,7 @@ function HeroView({ palette, logoColor, dark }: { palette: typeof PALETTES[0]; l
       <nav className="bm-hero-nav">
         <div className="bm-hero-nav-left">
           <BrandLogo color={logoColor} height={32} invert={dark} />
-          <span className="bm-hero-wordmark" style={{ color: wordmarkColor, fontSize: '1.75em' }}>Perebel</span>
+          <span className="bm-hero-wordmark" style={{ color: wordmarkColor, fontSize: '1.75em', marginTop: '4.8px' }}>Perebel</span>
         </div>
         <div className="bm-hero-nav-links">
           <span>Product</span>
