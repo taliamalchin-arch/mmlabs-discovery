@@ -169,12 +169,13 @@ function CaseCard({ dark }: { dark?: boolean }) {
 /* ── Hero view ── */
 
 function HeroView({ palette, logoColor, dark }: { palette: typeof PALETTES[0]; logoColor: string; dark?: boolean }) {
+  const wordmarkColor = dark ? palette.light : palette.dark;
   return (
     <div className={`bm-hero ${dark ? 'bm-hero--dark' : ''}`}>
       <nav className="bm-hero-nav">
         <div className="bm-hero-nav-left">
           <BrandLogo color={logoColor} height={32} invert={dark} />
-          <span className="bm-hero-wordmark" style={{ color: logoColor, fontSize: '1.2em' }}>Perebel</span>
+          <span className="bm-hero-wordmark" style={{ color: wordmarkColor, fontSize: '1.2em' }}>Perebel</span>
         </div>
         <div className="bm-hero-nav-links">
           <span>Product</span>
@@ -240,12 +241,13 @@ function CardStackView({ palette, typeSystem, logoColor }: { palette: typeof PAL
 /* ── Marketing view ── */
 
 function MarketingView({ logoColor, palette }: { logoColor: string; palette: typeof PALETTES[0] }) {
+  const wordmarkColor = palette.light;
   return (
     <div className="bm-marketing-wrap">
       <div className="bm-marketing">
         <div className="bm-mktg-top-left">
           <BrandLogo color={logoColor} height={56} invert />
-          <div className="bm-mktg-wordmark" style={{ color: logoColor, fontSize: '1.2em', display: 'flex', alignItems: 'center' }}>Perebel</div>
+          <div className="bm-mktg-wordmark" style={{ color: wordmarkColor, fontSize: '1.2em', display: 'flex', alignItems: 'center' }}>Perebel</div>
         </div>
         <div className="bm-mktg-body">
           <h2 className="bm-mktg-headline">
