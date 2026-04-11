@@ -7,7 +7,7 @@ export async function GET() {
     const publicDir = join(process.cwd(), 'public', 'perebel');
     const zip = new JSZip();
 
-    function addFilesRecursively(dir: string, zipFolder: JSZip) {
+    const addFilesRecursively = (dir: string, zipFolder: JSZip): void => {
       const files = readdirSync(dir);
 
       files.forEach(file => {
@@ -25,18 +25,21 @@ export async function GET() {
           }
         }
       });
-    }
+    };
 
     addFilesRecursively(publicDir, zip);
 
-    const zipBuffer = await zip.generateAsync({ type: 'nodebuffer' });
+    const zipBuffer = await zip.generateAsync({ type: 'arraybuffer' });
+    const blob = new Blob([zipBuffer], { type: 'application/zip' });
 
-    return new Response(zipBuffer, {
+    const init: ResponseInit = {
       headers: {
         'Content-Type': 'application/zip',
         'Content-Disposition': 'attachment; filename="perebel-brand-assets.zip"',
       },
-    });
+    };
+
+    return new Response(blob, init);
   } catch (error) {
     console.error('Error generating ZIP:', error);
     return new Response('Error generating ZIP file', { status: 500 });
