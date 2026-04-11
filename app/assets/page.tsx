@@ -401,6 +401,28 @@ export default function PerebelPage() {
       </nav>
 
       <div className="wrap">
+        <button
+          onClick={() => window.location.href = '/api/download-perebel'}
+          style={{
+            width: '100%',
+            padding: '1.5rem',
+            marginBottom: '2rem',
+            backgroundColor: '#4B700E',
+            color: 'white',
+            border: 'none',
+            borderRadius: 'var(--r)',
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            fontFamily: 'var(--sans)',
+            transition: 'background-color 0.2s ease',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#3a5609')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#4B700E')}
+        >
+          ↓ Download All Assets
+        </button>
+
         <div className="pb-header">
           <div className="pb-eyebrow">Brand Delivery</div>
           <h1 className="pb-title">Perebel</h1>
