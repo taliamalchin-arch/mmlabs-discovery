@@ -1,0 +1,17 @@
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @font-face {
+      font-family: 'General Sans';
+      src: url('./GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Regular.ttf') format('truetype');
+    }
+    .font-name {
+      font-family: 'General Sans', sans-serif;
+      font-size: 56px;
+      font-weight: 500;
+      fill: #2B0000;
+      text-anchor: middle;
+    }
+  </style>
+  <rect width="400" height="120" fill="#F5F5F5"/>
+  <text x="200" y="75" class="font-name">General Sans</text>
+</svg>

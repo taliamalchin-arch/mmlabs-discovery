@@ -1,4 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap');
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/perebel/typography/General\ Sans/GeneralSans-Regular.ttf') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/perebel/typography/General\ Sans/GeneralSans-Medium.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/perebel/typography/General\ Sans/GeneralSans-Semibold.ttf') format('truetype');
+  font-weight: 500;
+}
 
 @tailwind base;
 @tailwind components;
@@ -20,8 +38,8 @@
   --green: #2a6a3a;
   --green-bg: #edf5ea;
   --green-border: #b8dbb0;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --sans: 'Instrument Sans', system-ui, sans-serif;
+  --serif: 'EB Garamond', Georgia, serif;
+  --sans: 'General Sans', system-ui, sans-serif;
   --r: 3px;
 }
 
