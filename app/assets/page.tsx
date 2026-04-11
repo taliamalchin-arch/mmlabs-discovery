@@ -472,15 +472,15 @@ export default function PerebelPage() {
                             <div className="pb-asset-desc">{asset.description}</div>
                             {asset.label === 'Color Palette — Reference Sheet' && (
                               <div className="pb-color-swatches">
-                                <div className="pb-swatch" style={{ backgroundColor: '#2B0000' }}><span>Cordovan<br/>#2B0000</span></div>
-                                <div className="pb-swatch" style={{ backgroundColor: '#631300' }}><span>Auburn<br/>#631300</span></div>
-                                <div className="pb-swatch" style={{ backgroundColor: '#e8843a' }}><span>Poppy<br/>#e8843a</span></div>
-                                <div className="pb-swatch" style={{ backgroundColor: '#edb750' }}><span>Sunlight<br/>#edb750</span></div>
-                                <div className="pb-swatch" style={{ backgroundColor: '#4B700E' }}><span>Grass<br/>#4B700E</span></div>
-                                <div className="pb-swatch" style={{ backgroundColor: '#3a7a96' }}><span>Ocean<br/>#3a7a96</span></div>
-                                <div className="pb-swatch" style={{ backgroundColor: '#95c2d4' }}><span>Sky<br/>#95c2d4</span></div>
-                                <div className="pb-swatch" style={{ backgroundColor: '#dccba9' }}><span>Sand<br/>#dccba9</span></div>
-                                <div className="pb-swatch" style={{ backgroundColor: '#f4f0e2' }}><span>Cream<br/>#f4f0e2</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#2B0000' }}><span>Cordovan<br/>#2B0000<br/>rgb(43, 0, 0)<br/>hsl(0°, 100%, 8%)<br/>C=0% M=100% Y=100% K=83%</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#631300' }}><span>Auburn<br/>#631300<br/>rgb(99, 19, 0)<br/>hsl(16°, 100%, 19%)<br/>C=0% M=81% Y=100% K=61%</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#e8843a' }}><span>Poppy<br/>#e8843a<br/>rgb(232, 132, 58)<br/>hsl(20°, 80%, 57%)<br/>C=0% M=43% Y=75% K=9%</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#edb750' }}><span>Sunlight<br/>#edb750<br/>rgb(237, 183, 80)<br/>hsl(38°, 86%, 62%)<br/>C=0% M=23% Y=66% K=7%</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#4B700E' }}><span>Grass<br/>#4B700E<br/>rgb(75, 112, 14)<br/>hsl(82°, 78%, 25%)<br/>C=33% M=0% Y=88% K=56%</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#3a7a96' }}><span>Ocean<br/>#3a7a96<br/>rgb(58, 122, 150)<br/>hsl(199°, 44%, 41%)<br/>C=61% M=19% Y=0% K=41%</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#95c2d4' }}><span>Sky<br/>#95c2d4<br/>rgb(149, 194, 212)<br/>hsl(197°, 44%, 71%)<br/>C=30% M=8% Y=0% K=17%</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#dccba9' }}><span>Sand<br/>#dccba9<br/>rgb(220, 203, 169)<br/>hsl(32°, 48%, 76%)<br/>C=0% M=8% Y=23% K=14%</span></div>
+                                <div className="pb-swatch" style={{ backgroundColor: '#f4f0e2' }}><span>Cream<br/>#f4f0e2<br/>rgb(244, 240, 226)<br/>hsl(37°, 67%, 92%)<br/>C=0% M=2% Y=7% K=4%</span></div>
                               </div>
                             )}
                             {IS_INTERNAL && asset.folder && asset.filename && (
