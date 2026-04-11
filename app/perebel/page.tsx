@@ -418,6 +418,8 @@ export default function PerebelPage() {
 
         {sections.map(section => {
           const sectionAssets = displayAssets.filter(a => a.section === section);
+          const downloadableAssets = sectionAssets.filter(a => a.type === 'download');
+          const linkAssets = sectionAssets.filter(a => a.type === 'link');
           const subsections = Array.from(new Set(sectionAssets.map(a => a.subsection)));
           const isExpanded = expandedSections[section] ?? false;
 
@@ -432,13 +434,24 @@ export default function PerebelPage() {
                   >
                     {isExpanded ? '−' : '+'} {section}
                   </button>
-                  {IS_INTERNAL && (
+                  {IS_INTERNAL && downloadableAssets.length > 0 && (
                     <button
                       className="pb-download-all-btn"
                       onClick={() => downloadSection(section)}
                     >
                       Download all
                     </button>
+                  )}
+                  {IS_INTERNAL && downloadableAssets.length === 0 && linkAssets.length > 0 && (
+                    <a
+                      className="pb-download-all-btn"
+                      href={linkAssets[0].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: 'none', cursor: 'pointer' }}
+                    >
+                      Open in Figma ↗
+                    </a>
                   )}
                 </div>
 
