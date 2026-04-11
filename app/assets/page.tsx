@@ -83,7 +83,7 @@ const ASSETS: Asset[] = [
         status: 'ready',
         type: 'download',
       },
-    ];
+    ] as Asset[];
   }),
 
   // Logo Suite — Secondary Lockup (25 files: 5 color variants × 5 formats each)
@@ -147,7 +147,7 @@ const ASSETS: Asset[] = [
         status: 'ready',
         type: 'download',
       },
-    ];
+    ] as Asset[];
   }),
 
   // Logo Suite — Standalone Icon (25 files: 5 color variants × 5 formats each)
@@ -211,7 +211,7 @@ const ASSETS: Asset[] = [
         status: 'ready',
         type: 'download',
       },
-    ];
+    ] as Asset[];
   }),
 
   // Logo Suite — Favicon Kit
