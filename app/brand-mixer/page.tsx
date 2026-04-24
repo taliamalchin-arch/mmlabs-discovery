@@ -160,7 +160,7 @@ function CaseCard({ dark }: { dark?: boolean }) {
 
 /* ── Hero view ── */
 
-function HeroView({ palette, logoColor, dark }: { palette: typeof PALETTES[0]; logoColor: string; dark?: boolean }) {
+function HeroView({ palette, logoColor, dark, onToggleDark }: { palette: typeof PALETTES[0]; logoColor: string; dark?: boolean; onToggleDark: (v: boolean) => void }) {
   const wordmarkColor = dark ? palette.light : palette.dark;
   return (
     <div className={`bm-hero ${dark ? 'bm-hero--dark' : ''}`}>
@@ -173,6 +173,22 @@ function HeroView({ palette, logoColor, dark }: { palette: typeof PALETTES[0]; l
           <span>Product</span>
           <span>Pricing</span>
           <span>Sign in</span>
+          <div className="bm-hero-theme-toggle">
+            <button
+              type="button"
+              className={`bm-chip ${!dark ? 'bm-chip--type-active' : ''}`}
+              onClick={() => onToggleDark(false)}
+            >
+              Light
+            </button>
+            <button
+              type="button"
+              className={`bm-chip ${dark ? 'bm-chip--type-active' : ''}`}
+              onClick={() => onToggleDark(true)}
+            >
+              Dark
+            </button>
+          </div>
         </div>
       </nav>
       <div className="bm-hero-content">
@@ -311,42 +327,22 @@ export default function BrandMixerPage() {
             </button>
           ))}
         </div>
-      </div>
-
-      {/* View toggle */}
-      <div className="bm-view-toggle">
-        {VIEWS.map((v) => (
-          <button
-            type="button"
-            key={v}
-            className={`bm-view-btn ${v === view ? 'bm-view-btn--active' : ''}`}
-            onClick={() => setView(v)}
-          >
-            {v}
-          </button>
-        ))}
-        {view === 'Hero' && (
-          <div className="bm-hero-theme-toggle">
+        <div className="bm-view-toggle">
+          {VIEWS.map((v) => (
             <button
               type="button"
-              className={`bm-chip ${!heroDark ? 'bm-chip--type-active' : ''}`}
-              onClick={() => setHeroDark(false)}
+              key={v}
+              className={`bm-view-btn ${v === view ? 'bm-view-btn--active' : ''}`}
+              onClick={() => setView(v)}
             >
-              Light
+              {v}
             </button>
-            <button
-              type="button"
-              className={`bm-chip ${heroDark ? 'bm-chip--type-active' : ''}`}
-              onClick={() => setHeroDark(true)}
-            >
-              Dark
-            </button>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
 
       {/* Views */}
-      {view === 'Hero' && <HeroView palette={palette} logoColor={logoColor} dark={heroDark} />}
+      {view === 'Hero' && <HeroView palette={palette} logoColor={logoColor} dark={heroDark} onToggleDark={setHeroDark} />}
       {view === 'Card' && <CardStackView palette={palette} typeSystem={typeSystem} logoColor={logoColor} />}
       {view === 'Marketing' && <MarketingView logoColor={logoColor} palette={palette} />}
     </div>
