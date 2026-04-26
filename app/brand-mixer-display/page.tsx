@@ -72,9 +72,17 @@ const TYPES = [
 ];
 
 const LOGOS = [
-  { name: 'Mark A', src: '/logos/perebel-mark-a.svg' },
-  { name: 'Mark B', src: '/logos/perebel-mark-b.svg' },
-  { name: 'Mark C', src: '/logos/perebel-mark-c.svg' },
+  { name: '04', src: '/logos/perebel-04.svg' },
+  { name: '08', src: '/logos/perebel-08.svg' },
+  { name: '09', src: '/logos/perebel-09.svg' },
+  { name: '10', src: '/logos/perebel-10.svg' },
+  { name: '11', src: '/logos/perebel-11.svg' },
+  { name: '12', src: '/logos/perebel-12.svg' },
+  { name: '13', src: '/logos/perebel-13.svg' },
+  { name: '18', src: '/logos/perebel-18.svg' },
+  { name: '20', src: '/logos/perebel-20.svg' },
+  { name: '21', src: '/logos/perebel-21.svg' },
+  { name: '23', src: '/logos/perebel-23.svg' },
   { name: 'Mark D', src: '/logos/perebel-mark-d.svg' },
 ];
 
