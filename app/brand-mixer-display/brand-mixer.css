@@ -207,7 +207,7 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: var(--tracking-super);
-  color: var(--color-accent);
+  color: var(--color-super);
   font-weight: var(--super-weight);
   margin-bottom: 20px;
 }

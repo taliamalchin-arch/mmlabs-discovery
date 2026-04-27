@@ -5,7 +5,18 @@ import './brand-mixer.css';
 
 /* ── Data ── */
 
-const PALETTES = [
+type Palette = {
+  name: string;
+  light: string;
+  primary: string;
+  mid1: string;
+  mid2: string;
+  dark: string;
+  accent: string;
+  super?: string;
+};
+
+const PALETTES: Palette[] = [
   {
     name: 'Palette 1',
     light: '#f0e8e0', primary: '#2a1a1a', mid1: '#e0dece',
@@ -20,6 +31,7 @@ const PALETTES = [
     name: 'Palette 3',
     light: '#EFEFEF', primary: '#262928', mid1: '#C3D2E4',
     mid2: '#B8B4B4', dark: '#071857', accent: '#ECF170',
+    super: '#071857',
   },
   {
     name: 'Palette 4',
@@ -299,6 +311,7 @@ export default function BrandMixerPage() {
         '--color-mid2': palette.mid2,
         '--color-dark': palette.dark,
         '--color-accent': palette.accent,
+        '--color-super': palette.super ?? palette.accent,
         '--font-display': typeSystem.display,
         '--font-ui': typeSystem.ui,
         '--tracking-headline': typeSystem.trackingHeadline,
