@@ -6,24 +6,24 @@ import '../brand-mixer-display/brand-mixer.css';
 /* ── Locked-in final values ── */
 
 const PALETTE = {
-  name: 'Palette 3',
-  light: '#EFEFEF',
-  primary: '#262928',
-  mid1: '#C3D2E4',
-  mid2: '#B8B4B4',
-  dark: '#071857',
-  accent: '#ECF170',
-  super: '#071857',
+  name: 'Perebel — Final (P3)',
+  light: '#f4f0e2',   // Cream
+  primary: '#2B0000', // Cordovan
+  mid1: '#95c2d4',    // Sky
+  mid2: '#dccba9',    // Sand
+  dark: '#631300',    // Auburn
+  accent: '#e8843a',  // Poppy
+  super: '#3a7a96',   // Ocean
 };
 
 const TYPE_SYSTEM = {
-  name: 'Karma × General Sans',
-  display: "'Karma', Georgia, serif",
+  name: 'EB Garamond × General Sans',
+  display: "'EB Garamond', Georgia, serif",
   ui: "'General Sans', system-ui, sans-serif",
-  trackingHeadline: '-0.02em',
+  trackingHeadline: '-0.01em',
   trackingSuper: '0.12em',
   superWeight: 500,
-  displayName: 'Karma',
+  displayName: 'EB Garamond',
   uiName: 'General Sans',
 };
 
@@ -216,6 +216,12 @@ export default function BrandMixerFinalPage() {
         '--super-weight': String(TYPE_SYSTEM.superWeight),
       } as React.CSSProperties}
     >
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap"
+      />
       <div className="bmf-toolbar">
         <div className="bmf-view-toggle">
           {VIEWS.map((v) => (
