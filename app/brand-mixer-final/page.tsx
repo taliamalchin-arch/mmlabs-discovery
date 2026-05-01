@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import '../brand-mixer-display/brand-mixer.css';
 
 /* ── Locked-in final values ── */
@@ -29,6 +30,7 @@ const TYPE_SYSTEM = {
 const LOGO_SRC = '/logos/perebel-mark-d.svg';
 
 const VIEWS = ['Hero', 'Card', 'Marketing'] as const;
+type View = (typeof VIEWS)[number];
 
 /* ── Contrast helper ── */
 
@@ -194,9 +196,11 @@ function MarketingView({ logoSrc, palette }: { logoSrc: string; palette: typeof 
 }
 
 export default function BrandMixerFinalPage() {
+  const [view, setView] = useState<View>('Hero');
+
   return (
     <div
-      className="bm-page bmf-page"
+      className="bm-page"
       style={{
         '--color-light': PALETTE.light,
         '--color-primary': PALETTE.primary,
@@ -212,56 +216,40 @@ export default function BrandMixerFinalPage() {
         '--super-weight': String(TYPE_SYSTEM.superWeight),
       } as React.CSSProperties}
     >
-      <nav className="bmf-nav">
-        {VIEWS.map((v) => (
-          <a key={v} href={`#${v.toLowerCase()}`} className="bmf-nav-link">
-            {v}
-          </a>
-        ))}
-      </nav>
+      <div className="bmf-toolbar">
+        <div className="bmf-view-toggle">
+          {VIEWS.map((v) => (
+            <button
+              type="button"
+              key={v}
+              className={`bm-view-btn ${v === view ? 'bm-view-btn--active' : ''}`}
+              onClick={() => setView(v)}
+            >
+              {v}
+            </button>
+          ))}
+        </div>
+      </div>
 
-      <section id="hero" className="bmf-section">
-        <HeroView palette={PALETTE} logoSrc={LOGO_SRC} />
-      </section>
-
-      <section id="card" className="bmf-section">
-        <CardStackView palette={PALETTE} typeSystem={TYPE_SYSTEM} logoSrc={LOGO_SRC} />
-      </section>
-
-      <section id="marketing" className="bmf-section">
-        <MarketingView palette={PALETTE} logoSrc={LOGO_SRC} />
-      </section>
+      {view === 'Hero' && <HeroView palette={PALETTE} logoSrc={LOGO_SRC} />}
+      {view === 'Card' && <CardStackView palette={PALETTE} typeSystem={TYPE_SYSTEM} logoSrc={LOGO_SRC} />}
+      {view === 'Marketing' && <MarketingView palette={PALETTE} logoSrc={LOGO_SRC} />}
 
       <style jsx>{`
-        .bmf-page { padding-bottom: 0; }
-        .bmf-nav {
+        .bmf-toolbar {
           position: sticky;
           top: 0;
           z-index: 100;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 32px;
           height: 56px;
           background: #fff;
           border-bottom: 1px solid #e0e0e0;
         }
-        .bmf-nav-link {
-          font-family: ui-sans-serif, system-ui, sans-serif;
-          font-size: 13px;
-          font-weight: 500;
-          color: #262928;
-          text-decoration: none;
-          padding: 6px 14px;
-          border-radius: 999px;
-          border: 1px solid transparent;
-          transition: border-color 0.15s ease, background 0.15s ease;
-        }
-        .bmf-nav-link:hover {
-          border-color: #262928;
-        }
-        .bmf-section + .bmf-section {
-          border-top: 1px solid #e0e0e0;
+        .bmf-view-toggle {
+          display: flex;
+          gap: 8px;
         }
       `}</style>
     </div>
