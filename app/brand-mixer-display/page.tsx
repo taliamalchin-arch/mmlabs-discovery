@@ -18,9 +18,11 @@ type Palette = {
 
 const PALETTES: Palette[] = [
   {
-    name: 'Palette 1',
-    light: '#f0e8e0', primary: '#2a1a1a', mid1: '#e0dece',
-    mid2: '#adbcc0', dark: '#7e4040', accent: '#e06048',
+    // Perebel — final locked palette (matches the Brand Cheat Sheet):
+    // Cream / Cordovan / Sand neutrals + Sky / Auburn / Poppy supporting.
+    name: 'Perebel',
+    light: '#f4f0e2', primary: '#2b0000', mid1: '#dccba9',
+    mid2: '#95c2d4', dark: '#631300', accent: '#e8843a',
   },
   {
     name: 'Palette 2',
@@ -42,14 +44,16 @@ const PALETTES: Palette[] = [
 
 const TYPES = [
   {
-    name: 'Sentient × Public Sans',
-    display: "'Sentient', Georgia, serif",
-    ui: "'Public Sans', system-ui, sans-serif",
-    trackingHeadline: '-0.03em',
+    // Perebel — final locked type pairing (matches the Brand Cheat Sheet):
+    // EB Garamond display/serif + General Sans UI/body.
+    name: 'EB Garamond × General Sans',
+    display: "'EB Garamond', Georgia, serif",
+    ui: "'General Sans', system-ui, sans-serif",
+    trackingHeadline: '-0.02em',
     trackingSuper: '0.12em',
     superWeight: 500,
-    displayName: 'Sentient',
-    uiName: 'Public Sans',
+    displayName: 'EB Garamond',
+    uiName: 'General Sans',
   },
   {
     name: 'Source Serif 4 × Geist',
