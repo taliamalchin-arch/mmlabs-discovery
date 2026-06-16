@@ -89,10 +89,10 @@ const TYPES = [
 
 const LOGOS = [
   { name: '05', src: '/logos/perebel-05.svg' },
-  { name: '09', src: '/logos/perebel-09.svg' },
-  { name: '10', src: '/logos/perebel-10.svg' },
+  { name: '07', src: '/logos/perebel-07.svg' },
+  { name: '21', src: '/logos/perebel-21.svg' },
   { name: '11', src: '/logos/perebel-11.svg' },
-  { name: '12', src: '/logos/perebel-12.svg' },
+  { name: '23', src: '/logos/perebel-23.svg' },
 ];
 
 const VIEWS = ['Hero', 'Card', 'Marketing'] as const;
